@@ -1,0 +1,34 @@
+<script src="vendor/jquery.js"></script>
+
+
+<form id="main" name="main">
+      <p display="none" ></p>
+    <input type="text" name="text1" value="text"></input>
+    <p display="none" ></p>
+    <input type="radio" name="radio1" value="false"></input>
+    <p display="none" ></p>
+    <input type="checkbox" name="checkbox1" value="true"></input>
+
+    <input type="submit"></input>
+</form>
+
+
+
+
+<script src="main.js"></script>
+
+<script>
+    
+     $('form').on('submit', function(event){
+            event.preventDefault();
+            var flags = Further.start($(this).serializeArray());
+            if(flags['flags'] !== false){
+                flags.forEach(function(v){
+                    $('input[name="' + v.name + '"]').prev().text('please consider filling in this field, it is required for registration').show();
+                    $('input[name="' + v.name + '"]').prev().css('font-size', 10 * v.count)
+                })
+            }
+            
+        });
+    
+</script>
